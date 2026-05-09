@@ -1,0 +1,35 @@
+# Maven
+target/
+.mvn/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.git/
+.gitignore
+.gitattributes
+
+# Project files
+*.log
+*.class
+*.jar
+*.war
+*.rar
+*.ear
+
+# Documentation
+README.md
+HELP.md
+API_DOCUMENTATION.md
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+
