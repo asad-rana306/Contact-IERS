@@ -16,10 +16,12 @@ public class CorsConfig {
 		CorsConfiguration configuration = new CorsConfiguration();
 
 		// Allow requests from any origin (Flutter apps, browsers, etc.)
-		configuration.setAllowedOrigins(Arrays.asList("*"));
+		// Using null for allowedOrigins combined with allowCredentials false
+		// is equivalent to allowing all origins
+		configuration.setAllowedOriginPatterns(Arrays.asList("*"));
 
 		// Allow all HTTP methods
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"));
 
 		// Allow all headers
 		configuration.setAllowedHeaders(Arrays.asList("*"));
@@ -30,13 +32,15 @@ public class CorsConfig {
 				"Content-Type",
 				"X-Total-Count",
 				"X-Page-Number",
-				"X-Page-Size"
+				"X-Page-Size",
+				"Access-Control-Allow-Origin",
+				"Access-Control-Allow-Credentials"
 		));
 
-		// Allow credentials
-		configuration.setAllowCredentials(false);
+		// Allow credentials (important for production with gateways)
+		configuration.setAllowCredentials(true);
 
-		// Cache preflight requests for 1 hour
+		// Cache preflight requests for 1 hour (3600 seconds)
 		configuration.setMaxAge(3600L);
 
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

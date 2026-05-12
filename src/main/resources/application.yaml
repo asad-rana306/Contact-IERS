@@ -3,6 +3,11 @@ server:
   forward-headers-strategy: framework
   servlet:
     context-path: /
+  compression:
+    enabled: true
+    min-response-size: 1024
+  http2:
+    enabled: true
 
 spring:
   datasource:
@@ -11,12 +16,6 @@ spring:
     password: ${POSTGRES_PASSWORD}
   application:
     name: contacts-service
-  web:
-    cors:
-      allowed-origins: "*"
-      allowed-methods: GET,POST,PUT,DELETE,OPTIONS,PATCH
-      allowed-headers: "*"
-      max-age: 3600
 
   jpa:
     hibernate:
@@ -29,6 +28,7 @@ spring:
 logging:
   level:
     com.Contact: INFO
+    org.springframework.web.cors: DEBUG
 
 eureka:
   client:
@@ -43,3 +43,5 @@ springdoc:
     enabled: true
     url: /contacts/v3/api-docs
     config-url: /contacts/v3/api-docs/swagger-config
+    use-root-path: true
+
